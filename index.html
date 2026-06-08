@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ============================================================= -->
+<!-- TEMPLATE 1 — "MODERN ACADEMIC"                                -->
+<!-- Single-file static template for an academic summer school.    -->
+<!-- EDIT CONTENT: search for  >>> EDIT  markers throughout.        -->
+<!-- REBRAND COLOURS: change the CSS variables in :root below.      -->
+<!-- ============================================================= -->
+<title>AI Advances in Earth Observation — Summer School 2026</title>
+<meta name="description" content="A five-day intensive summer school on AI advances in Earth observation for PhD students, researchers and industry practitioners." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ====================  BRAND COLOURS — EDIT HERE  ==================== */
+  :root {
+    --navy:        #0e2742;   /* deep headings / nav / footer */
+    --navy-700:    #16385c;
+    --blue:        #2f6bed;   /* primary action colour */
+    --blue-700:    #1f55cf;
+    --blue-tint:   #eaf1ff;   /* light accent fills */
+    --ink:         #15233a;   /* body text */
+    --muted:       #5c6b7e;   /* secondary text */
+    --line:        #e3e8ef;   /* borders / dividers */
+    --surface:     #f6f8fb;   /* tinted section background */
+    --bg:          #ffffff;   /* page background */
+    --white:       #ffffff;
+
+    --maxw: 1180px;
+    --radius: 14px;
+    --shadow-sm: 0 1px 2px rgba(16,38,67,.06), 0 1px 3px rgba(16,38,67,.05);
+    --shadow-md: 0 6px 24px rgba(16,38,67,.08);
+    --shadow-lg: 0 18px 50px rgba(16,38,67,.12);
+
+    --font-head: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-body: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+
+  /* ====================  BASE  ==================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-head); color: var(--navy); line-height: 1.15; margin: 0; font-weight: 600; letter-spacing: -.01em; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img { max-width: 100%; display: block; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .section { padding: 92px 0; }
+  .section--tint { background: var(--surface); border-block: 1px solid var(--line); }
+
+  /* eyebrow / section label */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-body); font-weight: 600; font-size: 13px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--blue);
+    margin: 0 0 14px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--blue); border-radius: 2px; }
+
+  .section-head { max-width: 720px; margin-bottom: 48px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); }
+  .section-head p { color: var(--muted); font-size: 18px; margin-top: 14px; }
+
+  /* ====================  BUTTONS  ==================== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: var(--font-body); font-weight: 600; font-size: 16px;
+    padding: 14px 26px; border-radius: 10px; cursor: pointer;
+    border: 1px solid transparent; transition: all .18s ease; text-decoration: none;
+  }
+  .btn--primary { background: var(--blue); color: #fff; box-shadow: 0 6px 18px rgba(47,107,237,.28); }
+  .btn--primary:hover { background: var(--blue-700); transform: translateY(-2px); text-decoration: none; box-shadow: 0 10px 24px rgba(47,107,237,.34); }
+  .btn--ghost { background: transparent; color: var(--navy); border-color: var(--line); }
+  .btn--ghost:hover { border-color: var(--navy); background: var(--white); text-decoration: none; transform: translateY(-2px); }
+  .btn--light { background: #fff; color: var(--navy); }
+  .btn--light:hover { background: var(--blue-tint); text-decoration: none; }
+
+  /* ====================  HEADER / NAV  ==================== */
+  header {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(255,255,255,.86);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-family: var(--font-head); font-weight: 700; color: var(--navy); font-size: 19px; white-space: nowrap; }
+  .brand:hover { text-decoration: none; }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 9px; background: var(--navy);
+    display: grid; place-items: center; color: #fff; font-size: 15px; font-weight: 700;
+    font-family: var(--font-body); letter-spacing: .02em;
+  }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    color: var(--ink); font-weight: 500; font-size: 15.5px; padding: 8px 13px; border-radius: 8px;
+  }
+  .nav-links a:hover { background: var(--surface); color: var(--navy); text-decoration: none; }
+  .nav-cta { margin-left: 10px; }
+  .nav-cta a { padding: 10px 18px; font-size: 15px; color: #fff; }
+
+  .nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; width: 44px; height: 42px; cursor: pointer; align-items: center; justify-content: center; }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+    content: ""; display: block; width: 20px; height: 2px; background: var(--navy); border-radius: 2px; position: relative; transition: .2s;
+  }
+  .nav-toggle span::before { position: absolute; top: -6px; }
+  .nav-toggle span::after { position: absolute; top: 6px; }
+
+  /* ====================  HERO  ==================== */
+  .hero { position: relative; overflow: hidden; background: var(--bg); padding: 86px 0 78px; }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(var(--line) 1.2px, transparent 1.2px);
+    background-size: 26px 26px; mask-image: linear-gradient(to bottom, #000, transparent 70%); opacity: .55;
+  }
+  .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 9px; background: var(--blue-tint); color: var(--blue-700);
+    font-weight: 600; font-size: 14px; padding: 7px 15px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+  .hero h1 { font-size: clamp(34px, 5.2vw, 58px); font-weight: 700; letter-spacing: -.02em; }
+  .hero .lede { font-size: clamp(18px, 2vw, 21px); color: var(--muted); max-width: 38ch; margin: 20px 0 18px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 30px; color: var(--ink); font-weight: 500; }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta .ic { width: 18px; height: 18px; color: var(--blue); flex: none; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* hero visual card */
+  .hero-visual { position: relative; }
+  .hero-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow-lg); padding: 22px; transform: rotate(-1.2deg);
+  }
+  .hero-card .img-ph { aspect-ratio: 4/3; border-radius: 10px; }
+  .hero-card .cap { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .hero-card .cap strong { font-family: var(--font-head); color: var(--navy); font-size: 17px; }
+  .hero-card .cap span { color: var(--muted); font-size: 14px; }
+  .hero-float {
+    position: absolute; left: -26px; bottom: -22px; background: var(--navy); color: #fff;
+    border-radius: 12px; padding: 16px 20px; box-shadow: var(--shadow-md); transform: rotate(1.5deg);
+  }
+  .hero-float .n { font-family: var(--font-head); font-size: 30px; font-weight: 700; line-height: 1; }
+  .hero-float .l { font-size: 13px; opacity: .85; margin-top: 4px; letter-spacing: .03em; }
+
+  /* image placeholder — replace with <img> */
+  .img-ph {
+    position: relative; width: 100%; background:
+      repeating-linear-gradient(135deg, var(--blue-tint) 0 11px, #f4f7fe 11px 22px);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .img-ph::after {
+    content: attr(data-label); font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 12px; letter-spacing: .04em; color: var(--blue-700); background: rgba(255,255,255,.82);
+    padding: 5px 10px; border-radius: 6px; border: 1px solid var(--line);
+  }
+
+  /* ====================  TRUST STRIP  ==================== */
+  .trust { background: var(--navy); color: #fff; }
+  .trust .wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .trust-item { padding: 30px 22px; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
+  .trust-item:last-child { border-right: 0; }
+  .trust-item .t { font-family: var(--font-head); font-weight: 600; font-size: 17px; }
+  .trust-item .s { font-size: 13.5px; opacity: .72; margin-top: 4px; }
+
+  /* ====================  ABOUT  ==================== */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .about-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-top: 8px; }
+  .about-list li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); }
+  .check { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--blue-tint); color: var(--blue-700); display: grid; place-items: center; margin-top: 2px; }
+  .check svg { width: 13px; height: 13px; }
+  .who-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 30px; }
+  .who-card h3 { font-size: 19px; margin-bottom: 16px; }
+  .who-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .who-tags span { background: var(--surface); border: 1px solid var(--line); color: var(--navy); font-weight: 500; font-size: 14.5px; padding: 8px 14px; border-radius: 999px; }
+  .about-img { margin-top: 22px; aspect-ratio: 16/10; }
+
+  /* ====================  KEY INFO CARDS  ==================== */
+  .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .info-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #cdd8e6; }
+  .info-card .ic-box { width: 46px; height: 46px; border-radius: 11px; background: var(--blue-tint); color: var(--blue-700); display: grid; place-items: center; margin-bottom: 16px; }
+  .info-card .ic-box svg { width: 22px; height: 22px; }
+  .info-card .k { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+  .info-card .v { font-family: var(--font-head); font-size: 21px; color: var(--navy); font-weight: 600; margin-top: 4px; }
+  .info-card .d { color: var(--muted); font-size: 15px; margin-top: 6px; }
+
+  /* ====================  PROGRAMME / SCHEDULE  ==================== */
+  .prog { display: grid; gap: 16px; }
+  .day {
+    display: grid; grid-template-columns: 200px 1fr; gap: 28px;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 30px; box-shadow: var(--shadow-sm); transition: box-shadow .18s ease, border-color .18s ease;
+  }
+  .day:hover { box-shadow: var(--shadow-md); border-color: #cdd8e6; }
+  .day-tag { }
+  .day-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; font-weight: 600; font-size: 13px; letter-spacing: .04em; padding: 6px 13px; border-radius: 999px; }
+  .day-date { color: var(--muted); font-size: 14px; margin-top: 12px; }
+  .day-theme { font-family: var(--font-head); color: var(--navy); font-size: 19px; font-weight: 600; margin-top: 8px; }
+  .day-rows { display: grid; gap: 10px; }
+  .slot { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding-bottom: 10px; border-bottom: 1px dashed var(--line); }
+  .slot:last-child { border-bottom: 0; padding-bottom: 0; }
+  .slot .time { color: var(--blue-700); font-weight: 600; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+  .slot .what { color: var(--ink); }
+  .slot .what b { color: var(--navy); font-weight: 600; }
+  .slot .pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em; padding: 2px 9px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+  .pill--lab { background: #e8f6ee; color: #1c7a45; }
+  .pill--talk { background: var(--blue-tint); color: var(--blue-700); }
+  .pill--social { background: #fbf0e3; color: #a25b16; }
+
+  /* ====================  SPEAKERS  ==================== */
+  .speaker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .speaker {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s ease;
+    display: flex; flex-direction: column;
+  }
+  .speaker:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .speaker .photo { aspect-ratio: 1/1; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); }
+  .speaker .body { padding: 22px 22px 24px; }
+  .speaker .name { font-family: var(--font-head); font-size: 20px; font-weight: 600; color: var(--navy); }
+  .speaker .aff { color: var(--blue-700); font-weight: 600; font-size: 14px; margin-top: 3px; }
+  .speaker .talk { font-weight: 600; color: var(--navy); margin-top: 14px; font-size: 16px; }
+  .speaker .desc { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+
+  /* ====================  ORGANISERS  ==================== */
+  .org-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .org { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; text-align: center; box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s; }
+  .org:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .org .avatar { width: 78px; height: 78px; border-radius: 50%; margin: 0 auto 14px; }
+  .org .avatar.img-ph::after { font-size: 10px; padding: 3px 6px; }
+  .org .name { font-family: var(--font-head); font-size: 16.5px; color: var(--navy); font-weight: 600; }
+  .org .role { color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+
+  /* ====================  VENUE  ==================== */
+  .venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .venue-list { display: grid; gap: 18px; margin-top: 22px; }
+  .venue-list li { display: flex; gap: 14px; }
+  .venue-list .ic-box { flex: none; width: 42px; height: 42px; border-radius: 10px; background: var(--blue-tint); color: var(--blue-700); display: grid; place-items: center; }
+  .venue-list .ic-box svg { width: 20px; height: 20px; }
+  .venue-list .vt { font-weight: 600; color: var(--navy); }
+  .venue-list .vd { color: var(--muted); font-size: 15px; }
+  .map-ph { aspect-ratio: 4/3.4; border-radius: var(--radius); box-shadow: var(--shadow-md); }
+
+  /* ====================  REGISTRATION CTA  ==================== */
+  .reg { background: var(--navy); color: #fff; border-radius: 22px; padding: 56px; position: relative; overflow: hidden; }
+  .reg::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1.4px, transparent 1.4px); background-size: 24px 24px; mask-image: radial-gradient(circle at 80% 20%, #000, transparent 60%); }
+  .reg .reg-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+  .reg h2 { color: #fff; font-size: clamp(26px, 3.4vw, 36px); }
+  .reg .eyebrow { color: #8fb4ff; }
+  .reg .eyebrow::before { background: #8fb4ff; }
+  .reg p { color: rgba(255,255,255,.82); }
+  .reg-incl { display: grid; gap: 11px; margin: 22px 0 28px; }
+  .reg-incl li { display: flex; gap: 11px; align-items: flex-start; }
+  .reg-incl .check { background: rgba(143,180,255,.18); color: #bcd2ff; }
+  .reg-side { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); padding: 28px; }
+  .reg-side h3 { color: #fff; font-size: 18px; margin-bottom: 16px; }
+  .reg-dates li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 15px; }
+  .reg-dates li:last-child { border-bottom: 0; }
+  .reg-dates .dl { color: rgba(255,255,255,.78); }
+  .reg-dates .dv { font-weight: 600; }
+  .reg-note { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #ffd9a8; margin-top: 16px; }
+
+  /* ====================  FAQ  ==================== */
+  .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+  .qa { background: var(--white); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; }
+  .qa summary { cursor: pointer; list-style: none; padding: 20px 24px; font-family: var(--font-head); font-weight: 600; font-size: 18px; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary .plus { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--blue-tint); color: var(--blue-700); display: grid; place-items: center; font-size: 18px; transition: transform .2s; }
+  .qa[open] summary .plus { transform: rotate(45deg); }
+  .qa .a { padding: 0 24px 22px; color: var(--muted); }
+
+  /* ====================  FOOTER  ==================== */
+  footer { background: var(--navy); color: rgba(255,255,255,.78); padding: 64px 0 30px; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  footer h4 { color: #fff; font-family: var(--font-body); font-size: 14px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+  footer .brand { color: #fff; margin-bottom: 14px; }
+  footer .brand .mark { background: #fff; color: var(--navy); }
+  footer a { color: rgba(255,255,255,.78); }
+  footer a:hover { color: #fff; }
+  .foot-links li { margin-bottom: 9px; }
+  .sponsors { display: flex; flex-wrap: wrap; gap: 12px; }
+  .sponsor-ph { width: 96px; height: 44px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px dashed rgba(255,255,255,.22); display: grid; place-items: center; font-family: ui-monospace, monospace; font-size: 10px; color: rgba(255,255,255,.5); }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,.13); margin-top: 44px; padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 14px; }
+  .foot-bottom .legal { display: flex; gap: 22px; flex-wrap: wrap; }
+
+  /* ====================  RESPONSIVE  ==================== */
+  @media (max-width: 980px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { max-width: 460px; }
+    .about-grid, .venue-grid, .reg .reg-inner { grid-template-columns: 1fr; gap: 34px; }
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .speaker-grid { grid-template-columns: repeat(2, 1fr); }
+    .org-grid { grid-template-columns: repeat(3, 1fr); }
+    .trust .wrap { grid-template-columns: repeat(2, 1fr); }
+    .trust-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.1); }
+    .trust-item { border-bottom: 1px solid rgba(255,255,255,.1); }
+  }
+  @media (max-width: 760px) {
+    .section { padding: 64px 0; }
+    .nav-links {
+      position: fixed; inset: 70px 0 auto 0; flex-direction: column; align-items: stretch;
+      background: #fff; border-bottom: 1px solid var(--line); padding: 12px 18px 20px; gap: 2px;
+      box-shadow: var(--shadow-md); transform: translateY(-130%); transition: transform .25s ease; z-index: 50;
+    }
+    .nav-links.open { transform: translateY(0); }
+    .nav-links a { padding: 13px 12px; font-size: 16px; border-radius: 8px; }
+    .nav-cta { margin: 8px 0 0; }
+    .nav-cta a { display: block; text-align: center; }
+    .nav-toggle { display: inline-flex; }
+    .about-list, .reg-side { grid-template-columns: 1fr; }
+    .day { grid-template-columns: 1fr; gap: 18px; }
+    .slot { grid-template-columns: 92px 1fr; gap: 12px; }
+    .reg { padding: 36px 26px; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 16px; }
+    .info-grid, .speaker-grid, .org-grid, .trust .wrap { grid-template-columns: 1fr; }
+    .trust-item, .trust-item:nth-child(odd) { border-right: 0; }
+    .hero-float { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================================================================
+     HEADER / NAVIGATION
+     >>> EDIT: school short-name in .brand, and registration link in .nav-cta
+==================================================================== -->
+<header>
+  <nav class="wrap nav" aria-label="Primary">
+    <a class="brand" href="#home">
+      <span class="mark">EO</span>
+      <!-- >>> EDIT school short title -->
+      <span>AI in Earth Observation</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#organisers">Organisers</a></li>
+      <li><a href="#venue">Venue</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-cta"><a class="btn btn--primary" href="#registration">Register Interest</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+<!-- ===================================================================
+     HERO
+     >>> EDIT: title, subtitle, dates, location, description, button links
+==================================================================== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="hero-badge"><span class="dot"></span>1st Edition · Applications opening soon</span>
+      <!-- >>> EDIT TITLE -->
+      <h1>AI Advances in Earth Observation</h1>
+      <!-- >>> EDIT SHORT DESCRIPTION -->
+      <p class="lede">A five-day intensive school bringing together leading researchers and practitioners to explore the latest AI methods applied to Earth observation and remote sensing.</p>
+      <div class="hero-meta">
+        <!-- >>> EDIT DATES -->
+        <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>20–24 September 2026</span>
+        <!-- >>> EDIT LOCATION -->
+        <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>Newcastle University, UK</span>
+      </div>
+      <div class="hero-actions">
+        <!-- >>> EDIT registration + programme links -->
+        <a class="btn btn--primary" href="#registration">Register Interest</a>
+        <a class="btn btn--ghost" href="#programme">View Programme</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <!-- >>> REPLACE .img-ph with <img src="hero.jpg" alt="..."> -->
+        <div class="img-ph" data-label="campus / USB photo"></div>
+        <div class="cap"><strong>Urban Science Building</strong><span>Newcastle University</span></div>
+      </div>
+      <div class="hero-float">
+        <div class="n">120</div>
+        <div class="l">places available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     TRUST / SUMMARY STRIP
+==================================================================== -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-item"><div class="t">5-Day Intensive</div><div class="s">Full programme</div></div>
+    <div class="trust-item"><div class="t">Lectures + Labs</div><div class="s">Theory &amp; practice</div></div>
+    <div class="trust-item"><div class="t">Poster Session</div><div class="s">Present your work</div></div>
+    <div class="trust-item"><div class="t">Limited Places</div><div class="s">Apply early</div></div>
+    <div class="trust-item"><div class="t">Academic + Industry</div><div class="s">Expert speakers</div></div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     ABOUT
+==================================================================== -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">About the school</span>
+      <h2 style="font-size:clamp(28px,4vw,40px)">A focused week of learning, building and connecting</h2>
+      <p style="color:var(--muted);font-size:18px;margin-top:16px">The summer school combines lectures, hands-on labs and research talks to take participants from core foundations to the cutting edge of AI for Earth observation — with plenty of time to discuss, build and meet collaborators.</p>
+      <ul class="about-list">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Lectures from leading researchers</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Hands-on labs &amp; tutorials</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Cutting-edge research talks</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Poster presentations</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Structured networking</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Practical, transferable skills</li>
+      </ul>
+    </div>
+    <div>
+      <div class="who-card">
+        <h3>Who it's for</h3>
+        <div class="who-tags">
+          <span>PhD students</span><span>MSc students</span><span>Early-career researchers</span>
+          <span>Academics</span><span>Industry practitioners</span>
+        </div>
+        <!-- >>> REPLACE with a real photo -->
+        <div class="img-ph about-img" data-label="participants / lab photo"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     KEY INFORMATION CARDS
+     >>> EDIT each card value below
+==================================================================== -->
+<section class="section section--tint">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Key information</span>
+      <h2>Everything you need at a glance</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div class="k">Dates</div><div class="v">20–24 September 2026</div><div class="d">Sunday to Thursday, five full days</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="k">Location</div><div class="v">Newcastle University</div><div class="d">Urban Science Building, Newcastle upon Tyne, UK</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="k">Application deadline</div><div class="v">30 June 2026</div><div class="d">Notifications by 15 July 2026</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="k">Registration fee</div><div class="v">£420 / £260 student</div><div class="d">Includes lunches &amp; materials</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+        <div class="k">Accommodation</div><div class="v">On-campus available</div><div class="d">Subsidised rooms, book on registration</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+        <!-- >>> EDIT CONTACT EMAIL -->
+        <div class="k">Contact</div><div class="v"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4536302828203736262d2a2a29052b26296b24266b302e">[email&#160;protected]</a></div><div class="d">We aim to reply within 2 working days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     PROGRAMME / 5-DAY SCHEDULE
+     >>> EDIT day themes and slots below
+==================================================================== -->
+<section class="section" id="programme">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Programme</span>
+      <h2>A five-day journey from foundations to the frontier of AI in Earth observation</h2>
+      <p>Each day pairs morning lectures with afternoon hands-on labs. Times are indicative and subject to change.</p>
+    </div>
+    <div class="prog">
+      <!-- DAY 1 -->
+      <div class="day">
+        <div class="day-tag">
+          <span class="day-badge">Day 1</span>
+          <div class="day-date">Sun · 20 Sep</div>
+          <div class="day-theme">Foundations &amp; Registration</div>
+        </div>
+        <div class="day-rows">
+          <div class="slot"><div class="time">09:00</div><div class="what"><b>Registration &amp; welcome coffee</b></div></div>
+          <div class="slot"><div class="time">10:30</div><div class="what"><b>Opening keynote: AI and Earth observation today</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">14:00</div><div class="what"><b>Mathematical &amp; coding foundations</b><span class="pill pill--lab">Lab</span></div></div>
+          <div class="slot"><div class="time">18:00</div><div class="what"><b>Welcome reception</b><span class="pill pill--social">Social</span></div></div>
+        </div>
+      </div>
+      <!-- DAY 2 -->
+      <div class="day">
+        <div class="day-tag">
+          <span class="day-badge">Day 2</span>
+          <div class="day-date">Mon · 21 Sep</div>
+          <div class="day-theme">Core Methods &amp; Deep Learning</div>
+        </div>
+        <div class="day-rows">
+          <div class="slot"><div class="time">09:30</div><div class="what"><b>Neural network fundamentals</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">11:15</div><div class="what"><b>Architectures for remote sensing: CNNs to transformers</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">14:00</div><div class="what"><b>Training your first vision model</b><span class="pill pill--lab">Lab</span></div></div>
+          <div class="slot"><div class="time">16:30</div><div class="what"><b>Office hours with speakers</b></div></div>
+        </div>
+      </div>
+      <!-- DAY 3 -->
+      <div class="day">
+        <div class="day-tag">
+          <span class="day-badge">Day 3</span>
+          <div class="day-date">Tue · 22 Sep</div>
+          <div class="day-theme">Advanced Topics &amp; Labs</div>
+        </div>
+        <div class="day-rows">
+          <div class="slot"><div class="time">09:30</div><div class="what"><b>Self-supervised &amp; representation learning</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">11:15</div><div class="what"><b>Generative models &amp; diffusion</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">14:00</div><div class="what"><b>Advanced lab: fine-tuning at scale</b><span class="pill pill--lab">Lab</span></div></div>
+          <div class="slot"><div class="time">19:30</div><div class="what"><b>Social dinner</b><span class="pill pill--social">Social</span></div></div>
+        </div>
+      </div>
+      <!-- DAY 4 -->
+      <div class="day">
+        <div class="day-tag">
+          <span class="day-badge">Day 4</span>
+          <div class="day-date">Wed · 23 Sep</div>
+          <div class="day-theme">Applications, Industry &amp; Posters</div>
+        </div>
+        <div class="day-rows">
+          <div class="slot"><div class="time">09:30</div><div class="what"><b>Industry panel: research into products</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">11:15</div><div class="what"><b>Applied case studies</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">14:00</div><div class="what"><b>Applied lab &amp; mentoring</b><span class="pill pill--lab">Lab</span></div></div>
+          <div class="slot"><div class="time">16:30</div><div class="what"><b>Poster session &amp; networking</b><span class="pill pill--social">Social</span></div></div>
+        </div>
+      </div>
+      <!-- DAY 5 -->
+      <div class="day">
+        <div class="day-tag">
+          <span class="day-badge">Day 5</span>
+          <div class="day-date">Thu · 24 Sep</div>
+          <div class="day-theme">Research Skills &amp; Closing</div>
+        </div>
+        <div class="day-rows">
+          <div class="slot"><div class="time">09:30</div><div class="what"><b>Research skills: writing, reviewing, careers</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">11:15</div><div class="what"><b>Panel: the future of the field</b><span class="pill pill--talk">Talk</span></div></div>
+          <div class="slot"><div class="time">13:30</div><div class="what"><b>Closing remarks &amp; certificates</b></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     SPEAKERS — 6 cards
+     >>> EDIT each speaker: photo, name, affiliation, talk, description
+==================================================================== -->
+<section class="section section--tint" id="speakers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Speakers</span>
+      <h2>Learn from researchers shaping the field</h2>
+      <p>A confirmed line-up of academic and industry speakers across the breadth of AI for Earth observation.</p>
+    </div>
+    <div class="speaker-grid">
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Dr A. Speaker</div>
+          <div class="aff">University of Northbridge</div>
+          <div class="talk">Foundation Models for Visual Understanding</div>
+          <p class="desc">How large pre-trained models are reshaping perception, and what it means for downstream research.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Prof B. Researcher</div>
+          <div class="aff">Institute of Technology</div>
+          <div class="talk">3D Vision and Scene Reconstruction</div>
+          <p class="desc">From multi-view geometry to neural fields for reconstructing the world in three dimensions.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Dr C. Scholar</div>
+          <div class="aff">National Research Lab</div>
+          <div class="talk">Efficient Learning from Limited Data</div>
+          <p class="desc">Few-shot, semi-supervised and data-efficient methods for the real world's long tail.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Dr D. Lecturer</div>
+          <div class="aff">Frontier AI (Industry)</div>
+          <div class="talk">Vision-Language Models in Practice</div>
+          <p class="desc">Building, evaluating and deploying multimodal systems that connect images and text.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Prof E. Fellow</div>
+          <div class="aff">Centre for Trustworthy AI</div>
+          <div class="talk">Reliable AI for Real-World Deployment</div>
+          <p class="desc">Robustness, uncertainty and safety considerations when models meet the messy real world.</p>
+        </div>
+      </article>
+      <article class="speaker">
+        <div class="img-ph photo" data-label="speaker photo"></div>
+        <div class="body">
+          <div class="name">Dr F. Investigator</div>
+          <div class="aff">Medical Imaging Group</div>
+          <div class="talk">Medical and Scientific Image Analysis</div>
+          <p class="desc">How vision methods accelerate discovery across healthcare and the physical sciences.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     ORGANISERS
+==================================================================== -->
+<section class="section" id="organisers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Organisers</span>
+      <h2>The team behind the school</h2>
+    </div>
+    <div class="org-grid">
+      <div class="org"><div class="img-ph avatar" data-label="photo"></div><div class="name">Prof G. Chair</div><div class="role">General Chair</div></div>
+      <div class="org"><div class="img-ph avatar" data-label="photo"></div><div class="name">Dr H. Programme</div><div class="role">Programme Chair</div></div>
+      <div class="org"><div class="img-ph avatar" data-label="photo"></div><div class="name">Dr I. Local</div><div class="role">Local Arrangements</div></div>
+      <div class="org"><div class="img-ph avatar" data-label="photo"></div><div class="name">Volunteer Team</div><div class="role">Student Volunteers</div></div>
+      <div class="org"><div class="img-ph avatar" data-label="logo"></div><div class="name">Host Society</div><div class="role">Sponsoring Organisation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     VENUE
+==================================================================== -->
+<section class="section section--tint" id="venue">
+  <div class="wrap venue-grid">
+    <div>
+      <span class="eyebrow">Venue</span>
+      <h2 style="font-size:clamp(28px,4vw,40px)">Urban Science Building, Newcastle University</h2>
+      <p style="color:var(--muted);font-size:18px;margin-top:14px">A state-of-the-art building in the heart of Newcastle, a short walk from the city centre and well connected by rail and air.</p>
+      <ul class="venue-list">
+        <li>
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="vt">Urban Science Building, Newcastle upon Tyne NE4 5TG</div><div class="vd">Lectures and labs in the Urban Science Building.</div></div>
+        </li>
+        <li>
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15h16M6 15l2-7h8l2 7M7 19v-2M17 19v-2"/></svg></div>
+          <div><div class="vt">Travel</div><div class="vd">25 min by Metro from Newcastle International Airport; direct intercity rail to Newcastle Central Station.</div></div>
+        </li>
+        <li>
+          <div class="ic-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></div>
+          <div><div class="vt">Accessibility</div><div class="vd">All venues are step-free with accessible facilities. Tell us your requirements on registration.</div></div>
+        </li>
+      </ul>
+    </div>
+    <!-- >>> REPLACE with an embedded map iframe -->
+    <div class="img-ph map-ph" data-label="map embed goes here"></div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     REGISTRATION
+     >>> EDIT registration link, fees, important dates
+==================================================================== -->
+<section class="section" id="registration">
+  <div class="wrap">
+    <div class="reg">
+      <div class="reg-inner">
+        <div>
+          <span class="eyebrow">Registration</span>
+          <h2>Apply for the 2026 school</h2>
+          <p>Open to PhD and MSc students, early-career researchers, academics and industry practitioners. Places are allocated on a rolling basis.</p>
+          <ul class="reg-incl">
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>All lectures, labs and the poster session</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Lunches, refreshments and course materials</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Welcome reception and social dinner</li>
+            <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Certificate of attendance</li>
+          </ul>
+          <a class="btn btn--light" href="#" >Start your application →</a>
+          <div class="reg-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            Capacity is limited to 120 participants — early application is recommended.
+          </div>
+        </div>
+        <aside class="reg-side">
+          <h3>Important dates</h3>
+          <ul class="reg-dates">
+            <li><span class="dl">Applications open</span><span class="dv">1 May 2026</span></li>
+            <li><span class="dl">Application deadline</span><span class="dv">30 Jun 2026</span></li>
+            <li><span class="dl">Decisions sent</span><span class="dv">15 Jul 2026</span></li>
+            <li><span class="dl">Payment deadline</span><span class="dv">8 Aug 2026</span></li>
+            <li><span class="dl">School begins</span><span class="dv">20 Sep 2026</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FAQ
+==================================================================== -->
+<section class="section section--tint" id="faq">
+  <div class="wrap">
+    <div class="section-head" style="margin-inline:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">FAQ</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq">
+      <details class="qa" open>
+        <summary>Who can attend?<span class="plus">+</span></summary>
+        <div class="a">The school is aimed at PhD and MSc students, early-career researchers, academics and industry practitioners with an interest in computer vision and machine learning.</div>
+      </details>
+      <details class="qa">
+        <summary>Do I need prior experience?<span class="plus">+</span></summary>
+        <div class="a">A working knowledge of programming (Python) and basic machine learning is recommended. Day 1 covers foundations to bring everyone to a common starting point.</div>
+      </details>
+      <details class="qa">
+        <summary>Is accommodation included?<span class="plus">+</span></summary>
+        <div class="a">Accommodation is not included in the registration fee, but subsidised on-campus rooms can be booked during registration while availability lasts.</div>
+      </details>
+      <details class="qa">
+        <summary>Will there be practical sessions?<span class="plus">+</span></summary>
+        <div class="a">Yes. Every day pairs morning lectures with hands-on afternoon labs, plus a dedicated poster session for participants to present their work.</div>
+      </details>
+      <details class="qa">
+        <summary>How do I apply?<span class="plus">+</span></summary>
+        <div class="a">Submit the short application form from the Registration section. We review applications on a rolling basis and notify applicants by 15 July 2026.</div>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================================================================
+     FOOTER / CONTACT
+     >>> EDIT contact email, host institution, sponsor logos, legal links
+==================================================================== -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#home"><span class="mark">EO</span><span>CVML Summer School</span></a>
+        <p style="max-width:34ch">Hosted by the <strong style="color:#fff">Newcastle University</strong>.</p>
+        <p><a href="/cdn-cgi/l/email-protection#790a0c14141c0b0a1a1116161539171a1557181a570c12"><span class="__cf_email__" data-cfemail="b4c7c1d9d9d1c6c7d7dcdbdbd8f4dad7d89ad5d79ac1df">[email&#160;protected]</span></a></p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="foot-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#venue">Venue</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Attend</h4>
+        <ul class="foot-links">
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#organisers">Organisers</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#3b484e56565e494858535454577b555857155a58154e50">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sponsors &amp; partners</h4>
+        <div class="sponsors">
+          <div class="sponsor-ph">logo</div><div class="sponsor-ph">logo</div>
+          <div class="sponsor-ph">logo</div><div class="sponsor-ph">logo</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 AI Advances in Earth Observation Summer School. All rights reserved.</div>
+      <div class="legal">
+        <a href="#">Code of Conduct</a>
+        <a href="#">Privacy</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================================================================
+     MINIMAL JS — mobile nav toggle only
+==================================================================== -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // close menu when a link is tapped (mobile)
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
+    });
+  })();
+</script>
+</body>
+</html>
